@@ -20,7 +20,8 @@ node('') {
 	}
 	
 	stage ('Deployment'){
-		ansiblePlaybook colorized: true, disableHostKeyChecking: true, playbook: 'deploy.yml'
+		//ansiblePlaybook colorized: true, disableHostKeyChecking: true, playbook: 'deploy.yml'
+		deploy adapters: [tomcat9(credentialsId: 'TomcatCreds', path: '',url: 'http://34.204.12.206:8080/'], contextPath: 'counterwebapp', war:'target/*.war'
 	}
 	
 	stage ('Notification'){
